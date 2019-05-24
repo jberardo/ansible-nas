@@ -1,0 +1,18 @@
+---
+# defaults file for roles/nfs-mount
+
+# default mount type (cifs / nfs)
+nas_mount_type: cifs
+
+# nfs_share_mounts: []
+# nfs_mount_opts: rsize=8192,wsize=8192,timeo=14,intr,nfsvers=4
+
+cifs_credentials_file: /root/.cifscredentials
+cifs_username: user
+cifs_password: pass
+
+# samba_folder: []
+#   - name: Public
+#     src: "//ip/share"
+#     path: "/mnt/share"
+#     opts: defaults,credentials={{ cifs_credentials_file }},uid=1000,gid=1000,rw 0 0
