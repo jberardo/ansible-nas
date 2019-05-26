@@ -23,23 +23,3 @@
     with_items: "{{ samba_folder }}"
 
   when: samba_folder is defined
-
-- block: 
-  - name: Make sure nsf package is installed
-    apt: pkg=nfs-common state=present
-
-  # Do not create mountpoint using file, the mount module will create it
-  # automatically. This avoids problems where the module tries to change
-  # permissions on an existing directory
-
-  - name: Mount NFS share
-    mount:
-      fstype: nfs4
-      name: "{{ item.path }}"
-      opts: "{{ item.opts | default(nfs_mount_opts) }}"
-      src: "{{ item.location }}"
-      dump: "{{ item.dump | default(omit) }}"
-      passno: "{{ item.passno | default(omit) }}"
-      state: mounted
-    with_items: "{{ nfs_share_mounts }}"
-  when: nfs_share_mounts is defined
